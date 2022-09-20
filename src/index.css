@@ -1,0 +1,25 @@
+@import 'normalize.css';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 3.5rem;
+  background: #f2f3f7;
+}
+
+html {
+  font-size: calc(100vw / 2500 * 10);
+}
+
+@media (max-width: 1920px) {
+  html {
+    font-size: calc(100vw / 1920 * 10);
+  }
+}
+@media (max-width: 1200px) {
+  html {
+    font-size: calc(100vw / 1200 * 10);
+  }
+}
+

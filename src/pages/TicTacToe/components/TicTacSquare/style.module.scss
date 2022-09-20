@@ -1,0 +1,21 @@
+@import "../../../../scss/vars.scss";
+
+.tictac {
+  &__square{
+    width: 80px;
+    height: 80px;
+
+    background: transparent;
+    border: 1px solid #d5d5d5;
+    transition: 0.4s all;
+    outline: none;
+    cursor: pointer;
+    &:hover{
+      color: #ebebeb;
+      background: #5d5d5d;
+    }
+    &:nth-child(1){
+      background: rgb(248, 133, 133);
+    }
+  }
+}
