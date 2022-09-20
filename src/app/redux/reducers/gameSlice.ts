@@ -16,10 +16,10 @@ interface IGameState {
 const initialState: IGameState = {
   amount: 0,
   squareLine: 0,
-  winner: false,
   board: null,
-  play: false,
   xFirst: true,
+  play: false,
+  winner: false,
 };
 
 const gameSlice = createSlice({
@@ -71,11 +71,11 @@ const gameSlice = createSlice({
       }
     },
     setReset(state) {
-      const boardArr: any = [];
+      const boardArr: Board[] = [];
       for (let i = 0; i < state.amount; i++) {
         boardArr.push({ id: uuidv4(), value: null });
       }
-      state.board = [...boardArr]
+      state.board = [...boardArr];
       state.xFirst = true;
       state.play = false;
       state.winner = false;
