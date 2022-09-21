@@ -51,23 +51,26 @@ const gameSlice = createSlice({
         if (
           whosWin(state.board, state.squareLine, state.amount, 4) ||
           state.board[payload.id]
-        )
+        ) {
           return;
-        return {
-          ...state,
-          board: [...state.board].map((item) => {
-            if (item.id === payload.id) {
-              return {
-                id: item.id,
-                value: state.xFirst ? BOARD_VALUE.x : BOARD_VALUE.o,
-              };
-            } else {
-              return item;
-            }
-          }),
-          xFirst: !state.xFirst,
-          play: true,
-        };
+        }
+        if (payload.value === null) {
+          return {
+            ...state,
+            board: [...state.board].map((item) => {
+              if (item.id === payload.id) {
+                return {
+                  id: item.id,
+                  value: state.xFirst ? BOARD_VALUE.x : BOARD_VALUE.o,
+                };
+              } else {
+                return item;
+              }
+            }),
+            xFirst: !state.xFirst,
+            play: true,
+          };
+        }
       }
     },
     setReset(state) {

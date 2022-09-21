@@ -22,8 +22,8 @@ export const TicTacField: React.FC = () => {
   const field = useRef(null);
   const width = useWindowSize();
 
-  const handleClick = useCallback((id: number, index) => {
-    dispatch(setBoard({ id, index }));
+  const handleClick = useCallback((id: number, index, value) => {
+    dispatch(setBoard({ id, index, value }));
   }, []);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export const TicTacField: React.FC = () => {
       {board?.map((el: any, i: number) => {
         return (
           <TicTacSquare
-            onClick={() => handleClick(el.id, i)}
+            onClick={() => handleClick(el.id, i, el.value)}
             value={el.value}
             key={el.id}
           />
