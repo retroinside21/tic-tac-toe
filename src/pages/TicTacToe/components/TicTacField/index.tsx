@@ -17,7 +17,7 @@ export const TicTacField: React.FC = () => {
   const amount = useAppSelector((state) => state?.gameSlice?.amount);
   const squareLine = useAppSelector((state) => state?.gameSlice?.squareLine);
   const board: Board[] = useAppSelector((state) => state?.gameSlice?.board);
-  const winner = whosWin(board, squareLine, amount, 4);
+  const winner = whosWin(board, squareLine, amount, 5);
 
   const field = useRef(null);
   const width = useWindowSize();

@@ -49,7 +49,7 @@ const gameSlice = createSlice({
     setBoard(state, { payload }) {
       if (payload.index === 0 || state.play) {
         if (
-          whosWin(state.board, state.squareLine, state.amount, 4) ||
+          whosWin(state.board, state.squareLine, state.amount, 5) ||
           state.board[payload.id]
         ) {
           return;

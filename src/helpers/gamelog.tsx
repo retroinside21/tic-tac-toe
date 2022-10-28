@@ -4,10 +4,9 @@ export const whosWin = (
   squares: Board[],
   amountSquare: number,
   amount: number,
-  move: number = 4
+  move
 ) => {
   const newLines = [];
-
   for (let i = 0; i < amount; i++) {
     newLines.push(lineHorizontal(i, move));
     newLines.push(lineVertical(i, move, amountSquare));
@@ -15,12 +14,24 @@ export const whosWin = (
     newLines.push(inclineLeft(i, move, amountSquare));
   }
   for (let i = 0; i < newLines.length; i++) {
-    const [a, b, c, d] = newLines[i];
+    const nums = newLines[i].reduce((a: number, b: number) => {
+      a[b] =
+        squares[a]?.value === squares[b]?.value
+          ? squares[a]?.value
+          : squares[b]?.value;
+      return a;
+    }, []);
     if (
-      squares[a]?.value &&
-      squares[a]?.value === squares[b]?.value &&
-      squares[a]?.value === squares[c]?.value &&
-      squares[a]?.value === squares[d]?.value
+      nums.every((el) => {
+        if (el === "O") {
+          return true;
+        }
+      }) ||
+      nums.every((el) => {
+        if (el === "X") {
+          return true;
+        }
+      })
     ) {
       return true;
     }
@@ -29,7 +40,7 @@ export const whosWin = (
 };
 
 export const lineHorizontal = (index: number, numerator: number) => {
-  let result = [];
+  const result = [];
   let i = 0;
   while (numerator > i) {
     result.push(index + i);
@@ -43,7 +54,7 @@ export const lineVertical = (
   numerator: number,
   amountSquare: number
 ) => {
-  let result = [];
+  const result = [];
   let i = 0;
   while (numerator > i) {
     result.push(index + amountSquare * i);
@@ -57,7 +68,7 @@ export const inclineLeft = (
   numerator: number,
   amountSquare: number
 ) => {
-  let result = [];
+  const result = [];
   let i = 0;
   while (numerator > i) {
     result.push(index + (amountSquare - 1) * i);
@@ -71,7 +82,7 @@ export const inclineRight = (
   numerator: number,
   amountSquare: number
 ) => {
-  let result = [];
+  const result = [];
   let i = 0;
   while (numerator > i) {
     result.push(index + (amountSquare + 1) * i);
